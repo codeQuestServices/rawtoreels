@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "raw-to-reels"
+  },
+  "targets": {
+    "raw-to-reels": {
+      "hosting": {
+        "production": [
+          "raw-to-reels"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
