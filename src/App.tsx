@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import {
   Music,
   Clock,
@@ -6,8 +6,6 @@ import {
   CheckCircle,
   Play,
   Shield,
-  Menu,
-  X,
   ChevronDown,
   ChevronUp,
   Star,
@@ -21,6 +19,7 @@ import {
 } from 'lucide-react';
 
 import { Logo } from './components/Logo';
+import { Navbar } from './components/Navbar';
 
 // Interfaces for props
 interface ProblemCardProps {
@@ -51,132 +50,12 @@ interface FaqItemProps {
 }
 
 const App = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  // Ref for the mobile menu to detect outside clicks
-  const menuRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
-
   // Placeholder Tally Form Link
   const TALLY_FORM_URL = "https://tally.so";
 
-  // Handle scroll for sticky nav styling
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Handle click outside to close mobile menu
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      // If menu is open, and click is not inside menu AND not on the toggle button
-      if (
-        isMenuOpen &&
-        menuRef.current &&
-        !menuRef.current.contains(event.target as Node) &&
-        buttonRef.current &&
-        !buttonRef.current.contains(event.target as Node)
-      ) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isMenuOpen]);
-
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-blue-100 selection:text-blue-900">
-      {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
-        {/* Constrain nav to site container so items don't drift to viewport edges on very wide screens */}
-        <div className="container mx-auto max-w-7xl px-4 md:px-8 lg:px-12 flex justify-between items-center">
-          <div className="flex items-center gap-2 group cursor-pointer" onClick={() => window.scrollTo(0, 0)}>
-            {/* <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:scale-105 transition-transform">
-              <Film className="text-white w-5 h-5" />
-            </div> */}
-
-            {/* Logo Container - Place this on the left side of your Nav */}
-            <a href="/" className="flex items-center gap-2 group">
-              {/* Brand Icon (RawToReels SVG) */}
-              <a href="/">
-                <Logo className="h-10" />
-              </a>
-            </a>
-
-            {/* <span className="font-bold text-xl tracking-tight text-gray-900">RawToReels</span> */}
-          </div>
-
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8 flex-nowrap max-w-[60%] overflow-x-auto scrollbar-hide">
-            {['How It Works', 'Portfolio', 'Pricing'].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
-                className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors relative group"
-              >
-                {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
-              </a>
-            ))}
-            <a
-              href={TALLY_FORM_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="bg-blue-600 text-white px-6 py-2.5 rounded-full font-semibold hover:bg-blue-700 hover:-translate-y-0.5 transition-all shadow-lg hover:shadow-blue-600/30 flex items-center gap-2 flex-shrink-0"
-            >
-              Start My Reel
-            </a>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            ref={buttonRef}
-            className="md:hidden p-2 text-gray-600 hover:text-blue-600 transition-colors"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        {/* Mobile Nav Dropdown - kept inside the same container so it aligns to page center on wide screens */}
-        <div className="container mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
-          <div
-            ref={menuRef}
-            className={`md:hidden mt-0 origin-top transition-all duration-300 ${isMenuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'}`}
-          >
-            <div className="w-full bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-xl flex flex-col p-4 gap-2 rounded-b-xl">
-              {['How It Works', 'Portfolio', 'Pricing'].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="text-lg font-medium p-3 rounded-lg hover:bg-gray-50 text-gray-800 flex items-center justify-between group"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item}
-                  <ArrowRight size={16} className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600 -translate-x-2 group-hover:translate-x-0 transition-transform" />
-                </a>
-              ))}
-              <a
-                href={TALLY_FORM_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="bg-blue-600 text-white w-full py-4 rounded-xl font-bold text-center mt-2 shadow-lg shadow-blue-200 active:scale-[0.98] transition-transform"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Start My Reel
-              </a>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar tallyUrl={TALLY_FORM_URL} />
 
       {/* 1. Hero Section */}
       <header className="pt-32 pb-16 md:pt-48 md:pb-32 px-4 overflow-hidden">
@@ -464,7 +343,7 @@ const App = () => {
       </section>
 
       {/* 7. FAQ */}
-      <section className="py-20 bg-gray-50">
+      <section id="faq" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 max-w-3xl">
           <h2 className="text-3xl font-bold text-center mb-10">Frequently Asked Questions</h2>
           <div className="space-y-4">
