@@ -80,14 +80,15 @@ const App = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <a
-                  href={TALLY_FORM_URL}
-                  target="_blank"
-                  rel="noreferrer"
+                <button
+                  data-tally-open="KYzkWg"
+                  data-tally-emoji-text="👋"
+                  data-tally-emoji-animation="wave"
+                  data-tally-form-events-forwarding="1"
                   className="bg-blue-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl shadow-blue-600/20 hover:shadow-blue-600/40 hover:-translate-y-1 transition-all flex items-center justify-center gap-3 group"
                 >
                   Start My Reel <span className="opacity-80 text-sm font-normal">($29)</span> <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </a>
+                </button>
                 <div className="flex items-center gap-3 justify-center px-6 py-4 rounded-full bg-gray-50 border border-gray-100 text-sm text-gray-600 font-medium">
                   <div className="flex -space-x-3">
                     {[1, 2, 3].map(i => (
@@ -384,14 +385,15 @@ const App = () => {
 
       {/* Sticky Mobile CTA - Only visible on small screens */}
       <div className="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-lg border-t border-gray-200 p-4 md:hidden z-40 safe-area-bottom">
-        <a
-          href={TALLY_FORM_URL}
-          target="_blank"
-          rel="noreferrer"
+        <button
+          data-tally-open="KYzkWg"
+          data-tally-emoji-text="👋"
+          data-tally-emoji-animation="wave"
+          data-tally-form-events-forwarding="1"
           className="block w-full bg-blue-600 text-white py-3.5 rounded-xl font-bold shadow-lg shadow-blue-600/20 active:scale-[0.98] transition-all text-center"
         >
           Start My Reel ($29)
-        </a>
+        </button>
       </div>
     </div>
   );
@@ -443,14 +445,15 @@ const PricingCard: React.FC<PricingCardProps> = ({ title, price, desc, features,
         </li>
       ))}
     </ul>
-    <a
-      href={ctaLink}
-      target="_blank"
-      rel="noreferrer"
+    <button
+      data-tally-open="KYzkWg"
+      data-tally-emoji-text="👋"
+      data-tally-emoji-animation="wave"
+      data-tally-form-events-forwarding="1"
       className={`block w-full py-4 rounded-xl font-bold transition-all text-center hover:shadow-lg active:scale-95 ${isPopular ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-100 text-gray-900 hover:bg-gray-200'}`}
     >
       Choose {title}
-    </a>
+    </button>
   </div>
 );
 
