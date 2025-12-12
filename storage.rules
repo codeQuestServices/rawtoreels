@@ -6,6 +6,9 @@ rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
     match /{allPaths=**} {
+      // Default to deny all read/write access since the application
+      // does not currently utilize Firebase Storage for public uploads.
+      // If features are added later, specific rules should be implemented here.
       allow read, write: if false;
     }
   }

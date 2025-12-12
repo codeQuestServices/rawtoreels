@@ -85,6 +85,7 @@ const App = () => {
                   data-tally-emoji-text="👋"
                   data-tally-emoji-animation="wave"
                   data-tally-form-events-forwarding="1"
+                  data-tally-width="800"
                   className="bg-blue-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl shadow-blue-600/20 hover:shadow-blue-600/40 hover:-translate-y-1 transition-all flex items-center justify-center gap-3 group"
                 >
                   Start My Reel <span className="opacity-80 text-sm font-normal">($29)</span> <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -390,6 +391,7 @@ const App = () => {
           data-tally-emoji-text="👋"
           data-tally-emoji-animation="wave"
           data-tally-form-events-forwarding="1"
+          data-tally-width="800"
           className="block w-full bg-blue-600 text-white py-3.5 rounded-xl font-bold shadow-lg shadow-blue-600/20 active:scale-[0.98] transition-all text-center"
         >
           Start My Reel ($29)
@@ -450,6 +452,9 @@ const PricingCard: React.FC<PricingCardProps> = ({ title, price, desc, features,
       data-tally-emoji-text="👋"
       data-tally-emoji-animation="wave"
       data-tally-form-events-forwarding="1"
+      data-tally-width="800"
+      data-tally-hidden-service_pack={title}
+      data-tally-hidden-total={price}
       className={`block w-full py-4 rounded-xl font-bold transition-all text-center hover:shadow-lg active:scale-95 ${isPopular ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-100 text-gray-900 hover:bg-gray-200'}`}
     >
       Choose {title}
