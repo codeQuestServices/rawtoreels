@@ -41,7 +41,6 @@ interface PricingCardProps {
   desc: string;
   features: string[];
   isPopular?: boolean;
-  ctaLink: string;
 }
 
 interface FaqItemProps {
@@ -50,12 +49,9 @@ interface FaqItemProps {
 }
 
 const App = () => {
-  // Placeholder Tally Form Link
-  const TALLY_FORM_URL = "https://tally.so";
-
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-blue-100 selection:text-blue-900">
-      <Navbar tallyUrl={TALLY_FORM_URL} />
+      <Navbar />
 
       {/* 1. Hero Section */}
       <header className="pt-32 pb-16 md:pt-48 md:pb-32 px-4 overflow-hidden">
@@ -272,7 +268,6 @@ const App = () => {
               price="29"
               desc="Perfect for weekend getaways or concerts."
               features={["Up to 50 files (Photos/Videos)", "15-30 sec final video", "1 Revision round", "24h Delivery"]}
-              ctaLink={TALLY_FORM_URL}
             />
             <PricingCard
               title="Mega Dump"
@@ -280,14 +275,12 @@ const App = () => {
               desc="Best for big vacations and weddings."
               isPopular={true}
               features={["Up to 200 files (Photos/Videos)", "60 sec final video", "Unlimited Revisions", "Color Grading Included"]}
-              ctaLink={TALLY_FORM_URL}
             />
             <PricingCard
               title="The Bundle"
               price="99"
               desc="Three videos from one massive trip."
               features={["Unlimited file upload", "3 separate videos", "Dedicated Editor", "Priority Support"]}
-              ctaLink={TALLY_FORM_URL}
             />
           </div>
 
@@ -426,7 +419,7 @@ const StepCard: React.FC<StepCardProps> = ({ number, title, desc, color }) => (
   </div>
 );
 
-const PricingCard: React.FC<PricingCardProps> = ({ title, price, desc, features, isPopular, ctaLink }) => (
+const PricingCard: React.FC<PricingCardProps> = ({ title, price, desc, features, isPopular }) => (
   <div className={`rounded-[2rem] p-8 border flex flex-col h-full transition-all duration-300 ${isPopular ? 'border-blue-500 bg-blue-50/50 relative shadow-2xl scale-105 z-10' : 'border-gray-200 bg-white shadow-lg hover:border-blue-200 hover:shadow-xl'}`}>
     {isPopular && (
       <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-1.5 rounded-full text-sm font-bold shadow-lg tracking-wide uppercase">

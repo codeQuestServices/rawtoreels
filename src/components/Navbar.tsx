@@ -3,10 +3,10 @@ import { Menu, X, ArrowRight } from 'lucide-react';
 import { Logo } from './Logo';
 
 interface NavbarProps {
-  tallyUrl: string;
+  // Props can be added here if needed
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ tallyUrl }) => {
+export const Navbar: React.FC<NavbarProps> = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
